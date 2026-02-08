@@ -1,0 +1,470 @@
+:root {
+    --primary-color: #d15a5a;
+    /* Deep romantic red/pink */
+    --secondary-color: #f7bec9;
+    /* Soft pink */
+    --rose-gold: #e8b4b8;
+    --text-dark: #4a4a4a;
+    --text-light: #2c2c2c;
+    --glass-bg: rgba(255, 255, 255, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.4);
+    --shadow: 0 8px 32px 0 rgba(136, 136, 138, 0.3);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    /* Soft pastel background - whimsical and cute */
+    background: linear-gradient(-45deg, #e0c3fc, #8ec5fc, #ff9a9e, #fad0c4);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    /* No scrollbars */
+    color: var(--text-dark);
+}
+
+.highlight-name {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    color: #e91e63;
+    font-size: 1.3em;
+    font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(233, 30, 99, 0.2);
+    padding: 0 5px;
+    display: inline-block;
+    animation: gentlePulse 2s infinite ease-in-out;
+}
+
+@keyframes gentlePulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes gradientBG {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Floating Hearts Background */
+.heart-bg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.heart {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.4);
+    transform: rotate(45deg);
+    animation: float linear infinite;
+}
+
+.heart::before,
+.heart::after {
+    content: '';
+    width: 20px;
+    height: 20px;
+    background: inherit;
+    border-radius: 50%;
+    position: absolute;
+}
+
+.heart::before {
+    top: -10px;
+    left: 0;
+}
+
+.heart::after {
+    left: -10px;
+    top: 0;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0px) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-10px) rotate(2deg);
+    }
+
+    100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+}
+
+#elephant-svg {
+    animation: float 3s ease-in-out infinite;
+    overflow: visible;
+}
+
+/* Emotions Classes applied to SVG container */
+.character-container.excited #ears {
+    animation: flap 0.5s ease-in-out infinite alternate;
+}
+
+.character-container.excited #trunk {
+    animation: trunkWave 1s ease-in-out infinite alternate;
+}
+
+.character-container.sad #tears {
+    opacity: 1;
+    animation: cry 1s linear infinite;
+}
+
+.character-container.sad #mouth {
+    d: path("M90 105 Q100 100 110 105");
+    /* Frown */
+}
+
+.character-container.sad .sad-eyelid {
+    opacity: 1;
+}
+
+.character-container.angry #elephant-svg {
+    filter: drop-shadow(0 0 10px red);
+    animation: angryShake 0.3s ease-in-out infinite;
+}
+
+.character-container.love #love-hearts {
+    opacity: 1;
+    animation: floatHearts 1s ease-out infinite;
+}
+
+/* Keyframes */
+@keyframes flap {
+    0% {
+        transform: scaleX(1);
+        transform-origin: center;
+    }
+
+    100% {
+        transform: scaleX(0.8) translateY(-5px);
+        transform-origin: center;
+    }
+}
+
+@keyframes trunkWave {
+    0% {
+        transform: rotate(-5deg);
+        transform-origin: 100px 110px;
+    }
+
+    100% {
+        transform: rotate(5deg);
+        transform-origin: 100px 110px;
+    }
+}
+
+@keyframes cry {
+    0% {
+        transform: translateY(0);
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+}
+
+@keyframes angryShake {
+    0% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-2px) rotate(-2deg);
+    }
+
+    75% {
+        transform: translateX(2px) rotate(2deg);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@keyframes floatHearts {
+    0% {
+        transform: translateY(0) scale(0.5);
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(-30px) scale(1.2);
+        opacity: 0;
+    }
+}
+
+/* Container */
+.main-container {
+    width: 90%;
+    max-width: 500px;
+    /* Slightly compact */
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-radius: 25px;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    padding: 2.5rem 2rem;
+    text-align: center;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    position: relative;
+}
+
+/* Typography */
+h1 {
+    font-family: 'Great Vibes', cursive;
+    color: var(--primary-color);
+    margin-bottom: 0.2rem;
+    /* Reduced margin */
+    line-height: 1.2;
+}
+
+.main-question {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    /* Slightly smaller to fit better */
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);
+    /* Lighter shadow for glass */
+}
+
+.header-text p {
+    font-size: 1rem;
+    color: var(--text-dark);
+    margin-bottom: 0.3rem;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    opacity: 0.8;
+}
+
+.sub-text {
+    font-size: 0.85rem;
+    color: #444;
+    margin-bottom: 1.5rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+/* Buttons */
+.buttons-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    position: relative;
+    /* Context for moving 'No' button */
+    min-height: 80px;
+    /* Space for buttons */
+}
+
+.btn {
+    border: none;
+    border-radius: 30px;
+    padding: 12px 30px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    white-space: nowrap;
+}
+
+.primary-btn {
+    background: var(--primary-color);
+    color: white;
+}
+
+.primary-btn:hover {
+    transform: translateY(-3px) scale(1.05);
+    background: #b94545;
+    box-shadow: 0 6px 12px rgba(209, 90, 90, 0.4);
+}
+
+.secondary-btn {
+    background: white;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+    position: relative;
+    /* Default position */
+}
+
+/* Wait, 'No' button needs absolute positioning to move freely when hovered, 
+   but only relative to the container for bounds?
+   Ah, better to keep it relative initially then switch to absolute via JS interaction, 
+   or just transform: translate to move it around. 
+   Simplest is position: absolute on hover.
+*/
+
+/* Success Message */
+.hidden {
+    display: none;
+}
+
+#success-message {
+    animation: fadeIn 1s ease-out;
+}
+
+.success-title {
+    font-size: 3rem;
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+}
+
+.message-body p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 1rem;
+    font-family: 'Playfair Display', serif;
+}
+
+.heart-icon-large {
+    font-size: 4rem;
+    margin-top: 1rem;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Character Container */
+.character-container {
+    margin: 1rem 0;
+    transition: transform 0.3s ease;
+    min-height: 150px;
+    /* Ensure space is reserved even if image loads slow */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.character-container img {
+    max-width: 140px;
+    height: auto;
+    border-radius: 15px;
+    filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.15));
+    transition: transform 0.3s ease;
+    display: block;
+    /* Removes bottom space */
+}
+
+/* Wrong Decision Animation - Removed as per request */
+/* .shake-screen was here */
+
+/* Animations */
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s forwards;
+}
+
+.delay-1 {
+    animation-delay: 0.3s;
+}
+
+.delay-2 {
+    animation-delay: 0.6s;
+}
+
+.delay-3 {
+    animation-delay: 0.9s;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-out {
+    animation: fadeOut 0.5s forwards;
+}
+
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .main-container {
+        width: 90%;
+        padding: 1.5rem 1rem;
+        max-height: 95vh;
+        /* Ensure it fits */
+    }
+
+    .character-container img {
+        max-width: 120px;
+    }
+
+    .main-question {
+        font-size: 2.2rem;
+    }
+
+    .btn {
+        padding: 10px 20px;
+        font-size: 0.95rem;
+    }
+}
